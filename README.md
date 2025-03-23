@@ -33,3 +33,6 @@ Steps:
 
 Relational diagram is given below:
 ![image](https://github.com/user-attachments/assets/32921352-9175-489d-957a-15563e1d9cfb)
+
+
+ *aws ec2 describe-vpcs --query "Vpcs[*].VpcId* - to get VPC id if it is not shown in JSON
