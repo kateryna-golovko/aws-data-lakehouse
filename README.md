@@ -33,7 +33,7 @@ Below are the starter lines to run in the AWS terminal, before starting creation
  - *aws ec2 describe-vpcs --query "Vpcs[*].VpcId - to get VPC id if it is not shown in JSON
  - *aws ec2 describe-route-tables*
  - *aws ec2 create-vpc-endpoint --vpc-id vpc-09a86f342aad49043 --service-name com.amazonaws.us-east-1.s3 --route-table-ids rtb-03ce74bb95ad4ce13*
-> *aws iam create-role --role-name my-glue-service-role --assume-role-policy-document '{
+> ''' aws iam create-role --role-name my-glue-service-role --assume-role-policy-document '{
 >     "Version": "2012-10-17",
 >     "Statement": [
 >         {
@@ -44,8 +44,9 @@ Below are the starter lines to run in the AWS terminal, before starting creation
 >             "Action": "sts:AssumeRole"
 >         }
 >     ]
-> }'*
-*aws iam put-role-policy --role-name my-glue-service-role --policy-name S3Access --policy-document '{
+> }'
+'''
+> ''' aws iam put-role-policy --role-name my-glue-service-role --policy-name S3Access --policy-document '{
 >     "Version": "2012-10-17",
 >     "Statement": [
 >         {
@@ -68,8 +69,9 @@ Below are the starter lines to run in the AWS terminal, before starting creation
 >         }
 >     ]
 > }'
+'''
 
-> aws iam put-role-policy --role-name my-glue-service-role --policy-name GlueAccess --policy-document '{
+> ''' aws iam put-role-policy --role-name my-glue-service-role --policy-name GlueAccess --policy-document '{
 >     "Version": "2012-10-17",
 >     "Statement": [
 >         {
@@ -167,6 +169,7 @@ Below are the starter lines to run in the AWS terminal, before starting creation
 >         }
 >     ]
 > }'
+'''
 
 - *git clone https://github.com/udacity/nd027-Data-Engineering-Data-Lakes-AWS-Exercises.git*
 - *cd nd027-Data-Engineering-Data-Lakes-AWS-Exercises/starter/project/starter/customer/landing/*
