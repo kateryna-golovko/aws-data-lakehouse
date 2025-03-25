@@ -47,7 +47,7 @@ aws iam create-role --role-name my-glue-service-role --assume-role-policy-docume
         }
     ]
 }'
-
+```
 ```bash
 aws iam put-role-policy --role-name my-glue-service-role --policy-name S3Access --policy-document '{
     "Version": "2012-10-17",
@@ -72,7 +72,7 @@ aws iam put-role-policy --role-name my-glue-service-role --policy-name S3Access 
         }
     ]
 }'
-
+```
 ```bash
 aws iam put-role-policy --role-name my-glue-service-role --policy-name GlueAccess --policy-document '{
     "Version": "2012-10-17",
