@@ -2,11 +2,7 @@
 
 The third project in the "Data Engineering with AWS" course provided by Udemy.
 
-The background of the task is STEDI is working on development of a hardware STEDI Step Trainer.
-
-The aim is to extract the data produced by the STEDI Step Trainer sensors and the mobile app, and curate them into a data lakehouse solution on AWS. 
-
-Privacy is an essential consideration when it comes to customer data. Some of the customers have given permission for their data to be used for training the model purposes. Hence, the data used will be limited to the customers` data that gave their permission. This will be done by ensuring 
+The background of the task is STEDI is working on development of a hardware STEDI Step Trainer. The aim is to extract the data produced by the STEDI Step Trainer sensors and the mobile app, and curate them into a data lakehouse solution on AWS. Privacy is an essential consideration when it comes to customer data. Some of the customers have given permission for their data to be used for training the model purposes. Hence, the data used will be limited to the customers` data that gave their permission. This will be done by ensuring 
 
 
 For these project, the following environments are required:
@@ -26,17 +22,12 @@ The project consists of 3 datasets:
 Using AWS Glue, AWS S3, Python, and Spark, create or generate Python scripts to build a lakehouse solution in AWS. The image below shows the requirements:
 ![image](https://github.com/user-attachments/assets/273f32f1-3a47-48ad-9056-3cfe63ad3719)
 
-Steps:
-1.
-2.
-...
-
 Relational diagram is given below:
 ![image](https://github.com/user-attachments/assets/32921352-9175-489d-957a-15563e1d9cfb)
 
+Below are the starter lines to run in the AWS terminal, before starting creation of Glue jobs:
 
  *aws ec2 describe-vpcs --query "Vpcs[*].VpcId* - to get VPC id if it is not shown in JSON
-
  *aws s3 mb s3://kgolovko-lake-house*
  *aws s3 ls s3://kgolovko-lake-house/*
  *aws ec2 describe-vpcs*
