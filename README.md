@@ -167,7 +167,7 @@ aws iam put-role-policy --role-name my-glue-service-role --policy-name GlueAcces
         }
     ]
 }'
-
+```
 
 - *git clone https://github.com/udacity/nd027-Data-Engineering-Data-Lakes-AWS-Exercises.git*
 - *cd nd027-Data-Engineering-Data-Lakes-AWS-Exercises/starter/project/starter/customer/landing/*
