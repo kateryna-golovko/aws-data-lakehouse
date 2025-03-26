@@ -39,6 +39,8 @@ DropDuplicates_node1742791193398 =  DynamicFrame.fromDF(DropFields_node174278969
 
 # Script generated for node Customers curated
 EvaluateDataQuality().process_rows(frame=DropDuplicates_node1742791193398, ruleset=DEFAULT_DATA_QUALITY_RULESET, publishing_options={"dataQualityEvaluationContext": "EvaluateDataQuality_node1742776887734", "enableDataQualityResultsPublishing": True}, additional_options={"dataQualityResultsPublishing.strategy": "BEST_EFFORT", "observations.scope": "ALL"})
-Customerscurated_node1742789698636 = glueContext.write_dynamic_frame.from_options(frame=DropDuplicates_node1742791193398, connection_type="s3", format="json", connection_options={"path": "s3://kgolovko-lake-house/customer/curated/", "partitionKeys": []}, transformation_ctx="Customerscurated_node1742789698636")
-
+Customerscurated_node1742789698636 = glueContext.getSink(path="s3://kgolovko-lake-house/customer/curated/", connection_type="s3", updateBehavior="UPDATE_IN_DATABASE", partitionKeys=[], enableUpdateCatalog=True, transformation_ctx="Customerscurated_node1742789698636")
+Customerscurated_node1742789698636.setCatalogInfo(catalogDatabase="kgolovko-db",catalogTableName="customers_curated")
+Customerscurated_node1742789698636.setFormat("json")
+Customerscurated_node1742789698636.writeFrame(DropDuplicates_node1742791193398)
 job.commit()

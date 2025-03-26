@@ -29,6 +29,8 @@ PrivacyFilter_node1742729757213 = Filter.apply(frame=AmazonS3_node1742697098644,
 
 # Script generated for node Trusted Customer Zone
 EvaluateDataQuality().process_rows(frame=PrivacyFilter_node1742729757213, ruleset=DEFAULT_DATA_QUALITY_RULESET, publishing_options={"dataQualityEvaluationContext": "EvaluateDataQuality_node1742696902238", "enableDataQualityResultsPublishing": True}, additional_options={"dataQualityResultsPublishing.strategy": "BEST_EFFORT", "observations.scope": "ALL"})
-TrustedCustomerZone_node1742697151222 = glueContext.write_dynamic_frame.from_options(frame=PrivacyFilter_node1742729757213, connection_type="s3", format="json", connection_options={"path": "s3://kgolovko-lake-house/customer/trusted/", "partitionKeys": []}, transformation_ctx="TrustedCustomerZone_node1742697151222")
-
+TrustedCustomerZone_node1742697151222 = glueContext.getSink(path="s3://kgolovko-lake-house/customer/trusted/", connection_type="s3", updateBehavior="UPDATE_IN_DATABASE", partitionKeys=[], enableUpdateCatalog=True, transformation_ctx="TrustedCustomerZone_node1742697151222")
+TrustedCustomerZone_node1742697151222.setCatalogInfo(catalogDatabase="kgolovko-db",catalogTableName="customer_trusted")
+TrustedCustomerZone_node1742697151222.setFormat("json")
+TrustedCustomerZone_node1742697151222.writeFrame(PrivacyFilter_node1742729757213)
 job.commit()
