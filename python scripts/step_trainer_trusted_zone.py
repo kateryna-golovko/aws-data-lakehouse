@@ -34,6 +34,8 @@ DropFields_node1742868027374 = DropFields.apply(frame=Innerjoin_node174285449921
 
 # Script generated for node Amazon S3
 EvaluateDataQuality().process_rows(frame=DropFields_node1742868027374, ruleset=DEFAULT_DATA_QUALITY_RULESET, publishing_options={"dataQualityEvaluationContext": "EvaluateDataQuality_node1742854347357", "enableDataQualityResultsPublishing": True}, additional_options={"dataQualityResultsPublishing.strategy": "BEST_EFFORT", "observations.scope": "ALL"})
-AmazonS3_node1742854997526 = glueContext.write_dynamic_frame.from_options(frame=DropFields_node1742868027374, connection_type="s3", format="json", connection_options={"path": "s3://kgolovko-lake-house/step_trainer/trusted/", "partitionKeys": []}, transformation_ctx="AmazonS3_node1742854997526")
-
+AmazonS3_node1742854997526 = glueContext.getSink(path="s3://kgolovko-lake-house/step_trainer/trusted/", connection_type="s3", updateBehavior="UPDATE_IN_DATABASE", partitionKeys=[], enableUpdateCatalog=True, transformation_ctx="AmazonS3_node1742854997526")
+AmazonS3_node1742854997526.setCatalogInfo(catalogDatabase="kgolovko-db",catalogTableName="step_trainer_trusted")
+AmazonS3_node1742854997526.setFormat("json")
+AmazonS3_node1742854997526.writeFrame(DropFields_node1742868027374)
 job.commit()

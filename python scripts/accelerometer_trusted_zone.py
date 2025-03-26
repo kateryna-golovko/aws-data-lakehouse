@@ -34,6 +34,8 @@ DropFields_node1742775966451 = DropFields.apply(frame=CustomerPrivacyFilter_node
 
 # Script generated for node Amazon S3
 EvaluateDataQuality().process_rows(frame=DropFields_node1742775966451, ruleset=DEFAULT_DATA_QUALITY_RULESET, publishing_options={"dataQualityEvaluationContext": "EvaluateDataQuality_node1742774161136", "enableDataQualityResultsPublishing": True}, additional_options={"dataQualityResultsPublishing.strategy": "BEST_EFFORT", "observations.scope": "ALL"})
-AmazonS3_node1742775872050 = glueContext.write_dynamic_frame.from_options(frame=DropFields_node1742775966451, connection_type="s3", format="json", connection_options={"path": "s3://kgolovko-lake-house/accelerometer/trusted/", "partitionKeys": []}, transformation_ctx="AmazonS3_node1742775872050")
-
+AmazonS3_node1742775872050 = glueContext.getSink(path="s3://kgolovko-lake-house/accelerometer/trusted/", connection_type="s3", updateBehavior="UPDATE_IN_DATABASE", partitionKeys=[], enableUpdateCatalog=True, transformation_ctx="AmazonS3_node1742775872050")
+AmazonS3_node1742775872050.setCatalogInfo(catalogDatabase="kgolovko-db",catalogTableName="accelerometer_trusted")
+AmazonS3_node1742775872050.setFormat("json")
+AmazonS3_node1742775872050.writeFrame(DropFields_node1742775966451)
 job.commit()

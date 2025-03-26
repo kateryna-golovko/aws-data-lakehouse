@@ -37,6 +37,8 @@ Innerjoin_node1742855627373 = Join.apply(frame1=ChangeSchema_node1742861213267, 
 
 # Script generated for node Amazon S3
 EvaluateDataQuality().process_rows(frame=Innerjoin_node1742855627373, ruleset=DEFAULT_DATA_QUALITY_RULESET, publishing_options={"dataQualityEvaluationContext": "EvaluateDataQuality_node1742854347357", "enableDataQualityResultsPublishing": True}, additional_options={"dataQualityResultsPublishing.strategy": "BEST_EFFORT", "observations.scope": "ALL"})
-AmazonS3_node1742855738885 = glueContext.write_dynamic_frame.from_options(frame=Innerjoin_node1742855627373, connection_type="s3", format="json", connection_options={"path": "s3://kgolovko-lake-house/machine_learning/curated/", "partitionKeys": []}, transformation_ctx="AmazonS3_node1742855738885")
-
+AmazonS3_node1742855738885 = glueContext.getSink(path="s3://kgolovko-lake-house/machine_learning/curated/", connection_type="s3", updateBehavior="UPDATE_IN_DATABASE", partitionKeys=[], enableUpdateCatalog=True, transformation_ctx="AmazonS3_node1742855738885")
+AmazonS3_node1742855738885.setCatalogInfo(catalogDatabase="kgolovko-db",catalogTableName="machine_learning_curated")
+AmazonS3_node1742855738885.setFormat("json")
+AmazonS3_node1742855738885.writeFrame(Innerjoin_node1742855627373)
 job.commit()
